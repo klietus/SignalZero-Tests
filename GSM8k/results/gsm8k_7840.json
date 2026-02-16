@@ -1,0 +1,10 @@
+{
+  "id": "gsm8k_7840",
+  "question": "A concert ticket costs $40. Mr. Benson bought 12 tickets and received a 5% discount for every ticket bought that exceeds 10. How much did Mr. Benson pay in all?",
+  "expected_answer": "476",
+  "predicted_answer": "476",
+  "correct": true,
+  "reasoning": "First 10 tickets: 10 × $40 = $400. Extra 2 tickets get 5% discount: $40 × 0.95 = $38 each. 2 × $38 = $76. Total = $400 + $76 = $476.",
+  "trace_id": "trace_1769119911840",
+  "tokens_used": 265
+}

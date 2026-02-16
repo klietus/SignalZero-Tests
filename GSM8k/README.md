@@ -49,7 +49,27 @@ SignalZero achieves near-human performance on mathematical reasoning tasks.
 
 ### Raw Results
 
-Detailed test results including per-question breakdown, reasoning traces, and error analysis are available in the test logs.
+Detailed test results are available in the `results/` directory:
+- `run_metadata.json` - Overall run statistics
+- `results/*.json` - Individual question results with reasoning traces
+
+To analyze all results:
+```bash
+# Count correct answers
+grep -r '"correct": true' results/ | wc -l
+
+# View sample correct answer
+cat results/gsm8k_0001.json | jq .
+```
+
+### Sample Results
+
+See individual result files in `results/` directory for detailed reasoning traces including:
+- Original question text
+- Expected vs predicted answers
+- Step-by-step reasoning
+- Token usage statistics
+- Trace IDs for full auditability
 
 ---
 

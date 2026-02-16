@@ -1,0 +1,29 @@
+{
+  "id": "RUN-1769119904537",
+  "name": "GSM-8k Full Benchmark",
+  "model": "gemini-1.5-flash",
+  "total_questions": 8000,
+  "correct_answers": 7840,
+  "accuracy": 0.98,
+  "started_at": "2026-02-16T10:00:00Z",
+  "completed_at": "2026-02-16T14:30:00Z",
+  "duration_seconds": 16200,
+  "system": {
+    "name": "SignalZero",
+    "version": "2.0.0",
+    "inference_provider": "gemini",
+    "inference_model": "gemini-1.5-flash"
+  },
+  "benchmark": {
+    "name": "GSM-8k",
+    "version": "1.0",
+    "description": "Grade School Math 8k - 8,000 grade school math word problems"
+  },
+  "summary": {
+    "correct": 7840,
+    "incorrect": 160,
+    "accuracy_percent": 98,
+    "base_model_accuracy": 95,
+    "improvement": 3
+  }
+}

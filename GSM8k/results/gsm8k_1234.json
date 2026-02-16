@@ -1,0 +1,10 @@
+{
+  "id": "gsm8k_1234",
+  "question": "Josh decides to try flipping a house. He buys a house for $80,000 and then puts in $50,000 in repairs. This increased the value of the house by 150%. How much profit did he make?",
+  "expected_answer": "70000",
+  "predicted_answer": "70000",
+  "correct": true,
+  "reasoning": "Josh invested $80,000 + $50,000 = $130,000 total. The value increased by 150% of $80,000 = $120,000. New value = $80,000 + $120,000 = $200,000. Profit = $200,000 - $130,000 = $70,000.",
+  "trace_id": "trace_1769119906234",
+  "tokens_used": 312
+}

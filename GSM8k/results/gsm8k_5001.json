@@ -1,0 +1,10 @@
+{
+  "id": "gsm8k_5001",
+  "question": "James has a rainwater collection barrel. For each inch of rain he collects 15 gallons. On Monday it rained 4 inches and on Tuesday it rained 3 inches. He can sell water for $1.2 per gallon. How much money did he make from selling all the water?",
+  "expected_answer": "126",
+  "predicted_answer": "126",
+  "correct": true,
+  "reasoning": "Monday: 4 inches × 15 gallons/inch = 60 gallons. Tuesday: 3 inches × 15 gallons/inch = 45 gallons. Total water = 60 + 45 = 105 gallons. Revenue = 105 gallons × $1.2/gallon = $126.",
+  "trace_id": "trace_1769119910001",
+  "tokens_used": 278
+}
