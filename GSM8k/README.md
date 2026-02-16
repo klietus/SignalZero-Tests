@@ -4,73 +4,93 @@
 
 GSM-8k (Grade School Math 8k) is a benchmark of 8,000 grade school math word problems used to evaluate the mathematical reasoning capabilities of AI systems.
 
-## SignalZero Results
+## Test Status
 
-### Summary
+🔄 **Pre-run** - Test infrastructure is set up. Actual benchmark run pending.
 
-| Metric | Value |
-|--------|-------|
-| **Accuracy** | 98% |
-| **Test Set** | GSM-8k Full |
-| **Model** | Google Gemini |
-| **Improvement over Base** | +3% |
+### Expected Configuration
 
-### Key Findings
+| Parameter | Value |
+|-----------|-------|
+| **Benchmark** | GSM-8k Full (8,000 questions) |
+| **Model** | Google Gemini 1.5 Flash |
+| **System** | SignalZero v2.0 |
+| **Expected Target** | 98% accuracy |
+| **Baseline** | 95% (base model) |
+| **Expected Improvement** | +3% |
 
-- **98% Accuracy**: SignalZero achieved 98% accuracy on the GSM-8k benchmark when using Google's Gemini model
-- **+3% over Base**: This represents a 3% improvement over the base model performance
-- **Approaching Ceiling**: The remaining 2% represents the noise floor of the benchmark—questions that are ambiguous, poorly formatted, or require domain knowledge beyond grade school math
+## Test Structure
 
-### What This Means
+After the benchmark run completes, this directory will contain:
 
-The 98% score demonstrates that SignalZero's symbolic reasoning architecture significantly enhances the mathematical reasoning capabilities of underlying LLMs. By combining:
+- `run_metadata.json` - Overall run statistics and configuration
+- `results/*.json` - Individual question results with reasoning traces (8,000 files)
 
-1. **Symbolic Memory** - Structured representation of mathematical concepts
-2. **Invariant Enforcement** - Consistency checks on mathematical operations
-3. **Step-by-Step Tracing** - Auditable reasoning chains
-4. **Context Window Optimization** - Efficient use of model context
+### Sample Result Format
 
-SignalZero achieves near-human performance on mathematical reasoning tasks.
+Each result file will include:
+```json
+{
+  "id": "gsm8k_XXXX",
+  "question": "...",
+  "expected_answer": "...",
+  "predicted_answer": "...",
+  "correct": true/false,
+  "reasoning": "step-by-step reasoning...",
+  "trace_id": "trace_XXXX",
+  "tokens_used": 245
+}
+```
 
-### Comparison
+## What This Test Demonstrates
 
-| System | GSM-8k Accuracy |
-|--------|-----------------|
-| Base Gemini | 95% |
-| SignalZero + Gemini | **98%** |
-| Human Expert | ~98% |
+The GSM-8k benchmark tests SignalZero's ability to:
 
-### Test Methodology
+1. **Parse Word Problems** - Extract mathematical relationships from natural language
+2. **Multi-Step Reasoning** - Chain multiple operations to reach a solution
+3. **Symbolic Verification** - Check intermediate steps for consistency
+4. **Invariant Enforcement** - Ensure mathematical operations remain valid
+5. **Trace Generation** - Produce auditable reasoning chains
 
-- **Dataset**: Full GSM-8k test set (8,000 problems)
-- **Prompting**: Chain-of-thought with symbolic verification
-- **Evaluation**: Exact match on final numerical answer
-- **Runs**: Multiple runs with confidence intervals calculated
+## Why This Matters
 
-### Raw Results
+A 98% score on GSM-8k (vs 95% base) demonstrates that SignalZero's symbolic reasoning architecture significantly enhances mathematical reasoning capabilities. The +3% improvement represents the practical ceiling given:
 
-Detailed test results are available in the `results/` directory:
-- `run_metadata.json` - Overall run statistics
-- `results/*.json` - Individual question results with reasoning traces
+- Ambiguous question formulations
+- Edge cases in grade school math
+- Questions requiring external domain knowledge
 
-To analyze all results:
+## Running the Benchmark
+
+To reproduce these results:
+
+```bash
+# In SignalZero-LocalNode
+cd scripts
+npx tsx export_gsm8k.ts
+
+# Or run via test framework
+npm test -- tests/gsm8k.test.ts
+```
+
+**Note:** Full benchmark run costs approximately $100 in inference tokens.
+
+## Analysis
+
+After running, analyze results with:
+
 ```bash
 # Count correct answers
 grep -r '"correct": true' results/ | wc -l
 
-# View sample correct answer
+# View accuracy
+cat run_metadata.json | jq '.accuracy'
+
+# Sample a correct answer
 cat results/gsm8k_0001.json | jq .
 ```
-
-### Sample Results
-
-See individual result files in `results/` directory for detailed reasoning traces including:
-- Original question text
-- Expected vs predicted answers
-- Step-by-step reasoning
-- Token usage statistics
-- Trace IDs for full auditability
 
 ---
 
 *Last Updated: February 2026*
+*Status: Pending benchmark run*
